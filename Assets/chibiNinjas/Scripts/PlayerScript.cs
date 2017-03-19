@@ -8,7 +8,6 @@ public class PlayerScript : MonoBehaviour
 	private bool canJumpPlatform = false;
 	private bool falling = true;
 	public AudioClip[] auClip;
-    public GameObject fire;
 	public float velocity = 0.03f;
 	public float floorPos = -1000000.0f;
 
@@ -25,24 +24,23 @@ public class PlayerScript : MonoBehaviour
 		
 		transform.position = new Vector3(transform.position.x + velocity, falling ? transform.position.y : floorPos, 0);
 
-        if (Input.GetMouseButtonDown(0) && !dead)
-        {
+        if (Input.GetMouseButtonDown(0) && !dead){
             RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
 
 			if (hit.collider == null && (canJumpFloor || canJumpPlatform)){
                 Jump();
             }
         }
-		RaycastHit2D hitGravity = Physics2D.Raycast(transform.position, -Vector2.up);
-		if (hitGravity.collider!=null){
-			floorPos = hitGravity.point.y;
+		Vector3 pos = transform.position;
+		RaycastHit2D hitGround = Physics2D.Raycast (pos, Vector2.down, 3.5f);
+		if (hitGround!=null){
+			CircleCollider2D circle = transform.GetComponent<CircleCollider2D> ();
+			floorPos = hitGround.point.y + circle.radius;
 		}
-
     }
 
     private void Jump()
     {
-        fire.SetActive(true);
         GetComponent<AudioSource>().Play();
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         GetComponent<Rigidbody2D>().AddForce(Vector2.up * 200);
