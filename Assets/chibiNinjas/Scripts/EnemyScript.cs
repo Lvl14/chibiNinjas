@@ -38,6 +38,11 @@ public class EnemyScript : MonoBehaviour {
 			if (col.tag == "Player") {
 				life--;
 			}
+			if (col.tag == "Shuriken") {
+				GameObject.FindObjectOfType<GameManager>().Score += 20;
+				Destroy (gameObject);
+				Destroy (col.gameObject);
+			}
 		} else {
 			GameObject.FindObjectOfType<GameManager>().Score += 10;
 			Destroy (gameObject);

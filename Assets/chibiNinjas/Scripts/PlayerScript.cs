@@ -7,8 +7,8 @@ public class PlayerScript : MonoBehaviour
 	private bool canJumpFloor = false;
 	private bool canJumpPlatform = false;
 	private bool falling = true;
-	public float timeStunt = -1.0f;
-	public float shootCooldown = -1.0f;
+	private float timeStunt = -1.0f;
+	private float shootCooldown = -1.0f;
 
 	public AudioClip[] auClip;
 	public float velocity = 0.00f;
@@ -16,6 +16,7 @@ public class PlayerScript : MonoBehaviour
 	public Vector2 mouseClickedData;
 	public float floorPos = -1000000.0f;
 	public Vector3 startPoint;
+	public GameObject shuriken;
 
     private void Start()
     {
@@ -48,6 +49,10 @@ public class PlayerScript : MonoBehaviour
 
 					mouseClickedData = new Vector2 (deltaX, deltaY);
 					shootCooldown = 1.0f;
+
+					GameObject newShuriken = Instantiate(shuriken, new Vector3(transform.position.x, transform.position.y) , Quaternion.identity);
+					newShuriken.GetComponent<shurikenScript> ().direction = mouseClickedData;
+					newShuriken.GetComponent<shurikenScript> ().player = gameObject;
 				}
 	        }
 		} else {
