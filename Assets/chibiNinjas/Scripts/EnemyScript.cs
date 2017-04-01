@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyScript : MonoBehaviour {
+	public int life = 5;
+
 	private bool falling = true;
-	public float floorPos = -1000000.0f;
+	private float floorPos = -1000000.0f;
 	private bool dead;
-	private int life = 5;
+	private float liveCooldown = -1.0f;
 	// Use this for initialization
 	void Start () {
 		
@@ -25,6 +27,9 @@ public class EnemyScript : MonoBehaviour {
 		if (life <= 0) {
 			dead = true;
 		}
+		if (liveCooldown >= 0.0f) {
+			liveCooldown -= Time.deltaTime;
+		}
 	}
 
 
@@ -36,7 +41,10 @@ public class EnemyScript : MonoBehaviour {
 				falling = false;
 			}
 			if (col.tag == "Player") {
-				life--;
+				if (liveCooldown <= 0.0f) {
+					--life;
+					liveCooldown = 0.5f;
+				}
 			}
 			if (col.tag == "Shuriken") {
 				GameObject.FindObjectOfType<GameManager>().Score += 20;

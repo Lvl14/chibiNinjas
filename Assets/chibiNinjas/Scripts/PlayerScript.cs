@@ -9,10 +9,11 @@ public class PlayerScript : MonoBehaviour
 	private bool falling = true;
 	private float timeStunt = -1.0f;
 	private float shootCooldown = -1.0f;
+	private float liveCooldown = -1.0f;
 
 	public AudioClip[] auClip;
 	public float velocity = 0.00f;
-	public int life = 8;
+	public int life = 7;
 	public Vector2 mouseClickedData;
 	public float floorPos = -1000000.0f;
 	public Vector3 startPoint;
@@ -75,6 +76,9 @@ public class PlayerScript : MonoBehaviour
 		if (timeStunt >= 0.0f) {
 			timeStunt -= Time.deltaTime;
 		}
+		if (liveCooldown >= 0.0f) {
+			liveCooldown -= Time.deltaTime;
+		}
     }
 
     private void Jump()
@@ -113,7 +117,13 @@ public class PlayerScript : MonoBehaviour
 				GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
 				GetComponent<Rigidbody2D> ().AddForce (Vector2.up * 100);
 				timeStunt = 1.0f;
-				--life;
+				if (liveCooldown <= 0.0f) {
+					--life;
+					liveCooldown = 0.5f;
+				}
+			}
+			if (col.tag == "Live" && life < 7) {
+				++life;
 			}
 		} else {
 			GetComponent<AudioSource>().clip = auClip[1];
