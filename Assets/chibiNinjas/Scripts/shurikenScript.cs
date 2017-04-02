@@ -26,4 +26,11 @@ public class shurikenScript : MonoBehaviour {
 			Destroy (gameObject);
 		}
 	}
+
+	private void OnTriggerEnter2D(Collider2D col){
+		if (col.tag != "Player") {
+			Destroy (gameObject);
+		}
+	}
+
 }

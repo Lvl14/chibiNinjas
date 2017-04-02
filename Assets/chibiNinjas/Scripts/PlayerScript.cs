@@ -6,7 +6,6 @@ public class PlayerScript : MonoBehaviour
 	private bool dead;
 	private bool canJumpFloor = false;
 	private bool canJumpPlatform = false;
-	private bool falling = true;
 	private float timeStunt = -1.0f;
 	private float shootCooldown = -1.0f;
 	private float liveCooldown = -1.0f;
@@ -15,7 +14,6 @@ public class PlayerScript : MonoBehaviour
 	public float velocity = 0.00f;
 	public int life = 7;
 	public Vector2 mouseClickedData;
-	public float floorPos = -1000000.0f;
 	public Vector3 startPoint;
 	public GameObject shuriken;
 
@@ -28,7 +26,8 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
-		transform.position = new Vector3 (transform.position.x + (timeStunt <= 0.0f ? velocity : -velocity), falling ? transform.position.y : floorPos, 0);
+		transform.position = new Vector3 (transform.position.x + (timeStunt <= 0.0f ? velocity : -velocity), transform.position.y, 0);
+
 		if (timeStunt <= 0.0f) {
 	        if (Input.GetMouseButtonDown(0) && !dead){
 	            //RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
@@ -60,12 +59,6 @@ public class PlayerScript : MonoBehaviour
 			if (timeStunt <= 0.0f) {
 				GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 			}
-		}
-		Vector3 pos = transform.position;
-		RaycastHit2D hitGround = Physics2D.Raycast (pos, Vector2.down, 3.5f);
-		if (hitGround!=null){
-			CircleCollider2D circle = transform.GetComponent<CircleCollider2D> ();
-			floorPos = hitGround.point.y + circle.radius;
 		}
 		if (life <= 0) {
 			dead = true;
@@ -111,7 +104,6 @@ public class PlayerScript : MonoBehaviour
 			} 
 			if (col.tag == "Floor") {
 				canJumpFloor = true;
-				falling = false;
 			}
 			if (col.tag == "Enemy") {
 				GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
@@ -138,7 +130,6 @@ public class PlayerScript : MonoBehaviour
 			velocity = 0.03f;
 		} 
 		if (col.tag == "Floor"){
-			falling = true;
 			canJumpFloor = false;
 		}
 	}

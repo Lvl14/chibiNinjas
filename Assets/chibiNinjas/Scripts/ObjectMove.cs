@@ -7,7 +7,7 @@ public class ObjectMove : MonoBehaviour
 	public float offsetX;
 	public float offsetY;
 
-	void FixedUpdate () {
+	void Update () {
 		if (player != null) {
 			transform.position = new Vector3 (player.transform.position.x + offsetX, player.transform.position.y + offsetY, player.transform.position.z);
 		}

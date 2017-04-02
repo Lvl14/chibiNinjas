@@ -19,7 +19,6 @@ public class BoxScript : MonoBehaviour {
 			GameObject newPrize = Instantiate(prize, transform.position, Quaternion.identity);
 			GameObject.FindObjectOfType<GameManager>().Score += 5;
 			Destroy (gameObject);
-			Destroy (col.gameObject);
 		}
 	}
 
