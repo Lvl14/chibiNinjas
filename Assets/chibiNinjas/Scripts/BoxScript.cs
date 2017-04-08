@@ -16,7 +16,7 @@ public class BoxScript : MonoBehaviour {
 
 	private void OnTriggerEnter2D(Collider2D col){
 		if (col.tag == "Shuriken") {
-			GameObject newPrize = Instantiate(prize, transform.position, Quaternion.identity);
+			Instantiate(prize, transform.position, Quaternion.identity);
 			GameObject.FindObjectOfType<GameManager>().Score += 5;
 			Destroy (gameObject);
 		}

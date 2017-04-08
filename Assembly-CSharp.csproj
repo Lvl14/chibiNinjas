@@ -53,6 +53,7 @@
      <Compile Include="Assets\chibiNinjas\Scripts\BackAndroid.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\BoxScript.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\CameraAspect.cs" />
+     <Compile Include="Assets\chibiNinjas\Scripts\EnemyNinjaScript.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\EnemyScript.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\Fire.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\GameManager.cs" />
@@ -63,6 +64,7 @@
      <Compile Include="Assets\chibiNinjas\Scripts\OpenLevel.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\PlayerScript.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\SetScore.cs" />
+     <Compile Include="Assets\chibiNinjas\Scripts\kunaiScript.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\shurikenScript.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

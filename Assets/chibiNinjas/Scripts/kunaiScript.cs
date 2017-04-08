@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class shurikenScript : MonoBehaviour {
+public class kunaiScript : MonoBehaviour {
 
-	public Vector2 direction;
 	public float velocity;
 	public GameObject player;
 
@@ -16,9 +15,7 @@ public class shurikenScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Vector3 pos = transform.position;
-
-		transform.RotateAround (pos, Vector3.forward, Time.deltaTime*1000);
-		transform.position = new Vector3(pos.x + direction.x * velocity, pos.y+direction.y * velocity);
+		transform.position = new Vector3(pos.x + velocity, pos.y);
 
 		float dist = (transform.position - player.transform.position).magnitude;
 		if (dist > 15.0f) {
@@ -27,7 +24,7 @@ public class shurikenScript : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter2D(Collider2D col){
-		if (col.tag != "Player") {
+		if (col.tag != "Enemy") {
 			Destroy (gameObject);
 		}
 	}

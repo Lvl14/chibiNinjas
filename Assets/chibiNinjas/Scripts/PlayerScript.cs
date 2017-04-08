@@ -78,7 +78,7 @@ public class PlayerScript : MonoBehaviour
     {
         GetComponent<AudioSource>().Play();
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        GetComponent<Rigidbody2D>().AddForce(Vector2.up * 200);
+        GetComponent<Rigidbody2D>().AddForce(Vector2.up * 300);
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -104,6 +104,17 @@ public class PlayerScript : MonoBehaviour
 			} 
 			if (col.tag == "Floor") {
 				canJumpFloor = true;
+			}
+			if (col.tag == "kunai") {
+				GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
+				GetComponent<Rigidbody2D> ().AddForce (Vector2.up * 50);
+				timeStunt = 1.0f;
+				if (liveCooldown <= 0.0f) {
+					--life;
+					--life;
+					liveCooldown = 0.5f;
+				}
+
 			}
 			if (col.tag == "Enemy") {
 				GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
