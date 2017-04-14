@@ -10,7 +10,6 @@ public class PlayerScript : MonoBehaviour
 	private float shootCooldown = -1.0f;
 	private float liveCooldown = -1.0f;
 
-	public AudioClip[] auClip;
 	public float velocity = 0.00f;
 	public Vector2 mouseClickedData;
 	public Vector3 startPoint;
@@ -19,7 +18,6 @@ public class PlayerScript : MonoBehaviour
     private void Start()
     {
         dead = false;
-        GetComponent<AudioSource>().clip = auClip[0];
 		startPoint = transform.position;
     }
 
@@ -72,7 +70,6 @@ public class PlayerScript : MonoBehaviour
 
     private void Jump()
     {
-        GetComponent<AudioSource>().Play();
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         GetComponent<Rigidbody2D>().AddForce(Vector2.up * 300);
     }
@@ -90,14 +87,12 @@ public class PlayerScript : MonoBehaviour
 			} 
 			if (col.tag == "Reset") {
 				dead = true;
-				GetComponent<AudioSource> ().clip = auClip [1];
-				GetComponent<AudioSource> ().Play ();
 				Invoke ("ResetLevel", 1.5f);
 			} 
 			if (col.tag == "Stop") {
 				canJumpPlatform = true;
 				velocity = 0.00f;
-				transform.position = new Vector3 (col.transform.position.x - col.GetComponent<BoxCollider2D>().size.x/2 - GetComponent<CircleCollider2D>().radius, transform.position.y, 0);
+				transform.position = new Vector3 (col.transform.position.x - col.GetComponent<BoxCollider2D>().size.x/2 - GetComponent<BoxCollider2D>().size.x/2, transform.position.y, 0);
 			} 
 			if (col.tag == "Floor") {
 				canJumpFloor = true;
@@ -125,8 +120,8 @@ public class PlayerScript : MonoBehaviour
 				GameObject.FindObjectOfType<GameManager>().Life += 1;
 			}
 		} else {
-			GetComponent<AudioSource>().clip = auClip[1];
-			GetComponent<AudioSource>().Play();
+			//GetComponent<AudioSource>().clip = auClip[1];
+			//GetComponent<AudioSource>().Play();
 			Invoke("ResetLevel", 1.5f);
 		}
 	}

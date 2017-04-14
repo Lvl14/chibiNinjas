@@ -44,11 +44,11 @@ public class EnemyNinjaScript : MonoBehaviour {
 				}
 			}
 			if (col.tag == "Shuriken") {
-				GameObject.FindObjectOfType<GameManager>().Score += 20;
+				GameObject.FindObjectOfType<GameManager>().Score += 40;
 				Destroy (gameObject);
 			}
 		} else {
-			GameObject.FindObjectOfType<GameManager>().Score += 10;
+			GameObject.FindObjectOfType<GameManager>().Score += 20;
 			Destroy (gameObject);
 		}
 	}
