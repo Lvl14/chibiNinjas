@@ -14,6 +14,9 @@ public class kunaiScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (player == null) {
+			Destroy (gameObject);
+		}
 		Vector3 pos = transform.position;
 		transform.position = new Vector3(pos.x + velocity, pos.y);
 

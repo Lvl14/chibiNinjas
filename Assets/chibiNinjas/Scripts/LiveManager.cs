@@ -20,9 +20,9 @@ public class LiveManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (player.GetComponent<PlayerScript> ().life >= live_num && renderer.sprite != live_ok) {
+		if (GameObject.FindObjectOfType<GameManager>().Life >= live_num && renderer.sprite != live_ok) {
 			renderer.sprite = live_ok;
-		} else if (player.GetComponent<PlayerScript> ().life < live_num && renderer.sprite != live_ko) {
+		} else if (GameObject.FindObjectOfType<GameManager>().Life < live_num && renderer.sprite != live_ko) {
 			renderer.sprite = live_ko;
 		}
 	}

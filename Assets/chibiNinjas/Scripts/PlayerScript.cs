@@ -12,7 +12,6 @@ public class PlayerScript : MonoBehaviour
 
 	public AudioClip[] auClip;
 	public float velocity = 0.00f;
-	public int life = 7;
 	public Vector2 mouseClickedData;
 	public Vector3 startPoint;
 	public GameObject shuriken;
@@ -55,12 +54,9 @@ public class PlayerScript : MonoBehaviour
 					newShuriken.GetComponent<shurikenScript> ().player = gameObject;
 				}
 	        }
-		} else {
-			if (timeStunt <= 0.0f) {
-				GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-			}
-		}
-		if (life <= 0) {
+		} 
+
+		if (GameObject.FindObjectOfType<GameManager>().Life <= 0) {
 			dead = true;
 		}
 		if (shootCooldown >= 0.0f) {
@@ -90,7 +86,7 @@ public class PlayerScript : MonoBehaviour
 				Destroy (col.gameObject);
 			} 
 			if (col.tag == "Finish") {
-				dead = true;
+				Invoke("AdvanceLevel", 1.5f);
 			} 
 			if (col.tag == "Reset") {
 				dead = true;
@@ -101,6 +97,7 @@ public class PlayerScript : MonoBehaviour
 			if (col.tag == "Stop") {
 				canJumpPlatform = true;
 				velocity = 0.00f;
+				transform.position = new Vector3 (col.transform.position.x - col.GetComponent<BoxCollider2D>().size.x/2 - GetComponent<CircleCollider2D>().radius, transform.position.y, 0);
 			} 
 			if (col.tag == "Floor") {
 				canJumpFloor = true;
@@ -110,8 +107,7 @@ public class PlayerScript : MonoBehaviour
 				GetComponent<Rigidbody2D> ().AddForce (Vector2.up * 50);
 				timeStunt = 1.0f;
 				if (liveCooldown <= 0.0f) {
-					--life;
-					--life;
+					GameObject.FindObjectOfType<GameManager>().Life -= 2;
 					liveCooldown = 0.5f;
 				}
 
@@ -121,12 +117,12 @@ public class PlayerScript : MonoBehaviour
 				GetComponent<Rigidbody2D> ().AddForce (Vector2.up * 100);
 				timeStunt = 1.0f;
 				if (liveCooldown <= 0.0f) {
-					--life;
+					GameObject.FindObjectOfType<GameManager>().Life -= 1;
 					liveCooldown = 0.5f;
 				}
 			}
-			if (col.tag == "Live" && life < 7) {
-				++life;
+			if (col.tag == "Live" && GameObject.FindObjectOfType<GameManager>().Life < 7) {
+				GameObject.FindObjectOfType<GameManager>().Life += 1;
 			}
 		} else {
 			GetComponent<AudioSource>().clip = auClip[1];
@@ -144,7 +140,7 @@ public class PlayerScript : MonoBehaviour
 			canJumpFloor = false;
 		}
 	}
-
+		
 	private void BackToMain()
 	{
 		SceneManager.LoadScene("MainMenu");
@@ -152,6 +148,11 @@ public class PlayerScript : MonoBehaviour
 
 	private void ResetLevel()
 	{
-		SceneManager.LoadScene("Game");
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	}
+
+	private void AdvanceLevel()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
 	}
 }

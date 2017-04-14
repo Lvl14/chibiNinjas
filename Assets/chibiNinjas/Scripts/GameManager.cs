@@ -6,12 +6,12 @@ public class GameManager : MonoBehaviour
 
 	public TextMesh scoreLabel;
 	public static int score;
+	public static int life;
 	public int Score
 	{
 		set
 		{
 			score = value;
-
 			scoreLabel.text = Score.ToString();
 		}
 		get
@@ -19,15 +19,23 @@ public class GameManager : MonoBehaviour
 			return score;
 		}
 	}
-
-	void Start () 
+	public int Life
 	{
-		score = 0;
-
-		//InvokeRepeating("CreateObjects", 1,2);
+		set
+		{
+			life = value;
+		}
+		get
+		{
+			return life;
+		}
 	}
 
-	void CreateObjects()
-	{
+	void Start (){
+		if (life <= 0) {
+			life = 7;
+			score = 0;
+		}
+		scoreLabel.text = Score.ToString ();
 	}
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class GravityScript : MonoBehaviour {
-	private bool falling = true;
 	public float floorPos = -1000000.0f;
 	public float currvel = 0.0f;
 	private float maxVel = -2.0f;
@@ -11,8 +10,8 @@ public class GravityScript : MonoBehaviour {
 	void Start () {
 		Vector3 pos = transform.position;
 		transform.position = pos;
-		RaycastHit2D hitGround = Physics2D.Raycast (pos, Vector2.down, 5.0f);
-		if (hitGround!=null){
+		RaycastHit2D hitGround = Physics2D.Raycast (pos, Vector2.down, 50.0f);
+		if (hitGround.collider!=null){
 			CircleCollider2D circle = transform.GetComponent<CircleCollider2D> ();
 			if (circle != null) {
 				floorPos = hitGround.point.y + circle.radius;
@@ -36,10 +35,10 @@ public class GravityScript : MonoBehaviour {
 	}
 
 	void Update () {
-		Vector3 pos = new Vector3(transform.position.x, falling ? transform.position.y : floorPos, 0);
+		Vector3 pos = new Vector3(transform.position.x, transform.position.y > floorPos ? transform.position.y : floorPos, 0);
 		transform.position = pos;
-		RaycastHit2D hitGround = Physics2D.Raycast (pos, Vector2.down, 5.0f);
-		if (hitGround!=null){
+		RaycastHit2D hitGround = Physics2D.Raycast (pos, Vector2.down, 50.0f);
+		if (hitGround.collider!=null){
 			CircleCollider2D circle = transform.GetComponent<CircleCollider2D> ();
 			if (circle != null) {
 				floorPos = hitGround.point.y + circle.radius;
@@ -47,17 +46,6 @@ public class GravityScript : MonoBehaviour {
 				BoxCollider2D box = transform.GetComponent<BoxCollider2D> ();
 				floorPos = hitGround.point.y + box.size.y/2;
 			}
-		}
-	}
-
-	private void OnTriggerEnter2D(Collider2D col){
-		if (col.tag == "Floor") {
-			falling = false;
-		}
-	}
-	private void OnTriggerExit2D(Collider2D col){
-		if (col.tag == "Floor") {
-			falling = true;
 		}
 	}
 }
