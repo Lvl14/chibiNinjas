@@ -62,6 +62,7 @@
      <Compile Include="Assets\chibiNinjas\Scripts\LiveScript.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\ObjectMove.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\OpenLevel.cs" />
+     <Compile Include="Assets\chibiNinjas\Scripts\PlayAgainScript.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\PlayerScript.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\SetScore.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\kunaiScript.cs" />

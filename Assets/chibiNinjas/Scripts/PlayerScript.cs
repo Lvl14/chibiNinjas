@@ -45,7 +45,7 @@ public class PlayerScript : MonoBehaviour
 
 
 					mouseClickedData = new Vector2 (deltaX, deltaY);
-					shootCooldown = 1.0f;
+					shootCooldown = 0.5f;
 
 					GameObject newShuriken = Instantiate(shuriken, new Vector3(transform.position.x, transform.position.y) , Quaternion.identity);
 					newShuriken.GetComponent<shurikenScript> ().direction = mouseClickedData;
@@ -53,18 +53,22 @@ public class PlayerScript : MonoBehaviour
 				}
 	        }
 		} 
-
-		if (GameObject.FindObjectOfType<GameManager>().Life <= 0) {
-			dead = true;
-		}
-		if (shootCooldown >= 0.0f) {
-			shootCooldown -= Time.deltaTime;
-		}
-		if (timeStunt >= 0.0f) {
-			timeStunt -= Time.deltaTime;
-		}
-		if (liveCooldown >= 0.0f) {
-			liveCooldown -= Time.deltaTime;
+		if (!dead) {
+			if (GameObject.FindObjectOfType<GameManager> ().Life <= 0) {
+				dead = true;
+			}
+			if (shootCooldown >= 0.0f) {
+				shootCooldown -= Time.deltaTime;
+			}
+			if (timeStunt >= 0.0f) {
+				timeStunt -= Time.deltaTime;
+			}
+			if (liveCooldown >= 0.0f) {
+				liveCooldown -= Time.deltaTime;
+			}
+		} 
+		if (dead) {
+			Invoke("ResetLevel", 1.5f);
 		}
     }
 
@@ -86,8 +90,7 @@ public class PlayerScript : MonoBehaviour
 				Invoke("AdvanceLevel", 1.5f);
 			} 
 			if (col.tag == "Reset") {
-				dead = true;
-				Invoke ("ResetLevel", 1.5f);
+				GameObject.FindObjectOfType<GameManager> ().Life = 0;
 			} 
 			if (col.tag == "Stop") {
 				canJumpPlatform = true;
@@ -119,10 +122,6 @@ public class PlayerScript : MonoBehaviour
 			if (col.tag == "Live" && GameObject.FindObjectOfType<GameManager>().Life < 7) {
 				GameObject.FindObjectOfType<GameManager>().Life += 1;
 			}
-		} else {
-			//GetComponent<AudioSource>().clip = auClip[1];
-			//GetComponent<AudioSource>().Play();
-			Invoke("ResetLevel", 1.5f);
 		}
 	}
 		
@@ -143,6 +142,7 @@ public class PlayerScript : MonoBehaviour
 
 	private void ResetLevel()
 	{
+		SaveMaxScore ();
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
@@ -150,4 +150,17 @@ public class PlayerScript : MonoBehaviour
 	{
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
 	}
+
+	private void SaveMaxScore () {
+		int maxScore = PlayerPrefs.GetInt ("maxScore");
+		int currentScore = GameObject.FindObjectOfType<GameManager> ().Score;
+
+		if (currentScore > maxScore) {
+			PlayerPrefs.SetInt ("maxScore", currentScore);
+			Debug.Log ("Max score is: " + currentScore);
+		} else {
+			Debug.Log ("Max score is still: " + maxScore);
+		}
+	}
+
 }

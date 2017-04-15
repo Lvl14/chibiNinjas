@@ -26,7 +26,7 @@ public class EnemyNinjaScript : MonoBehaviour {
 		if (shootKunaiCooldown >= 0.0f) {
 			shootKunaiCooldown -= Time.deltaTime;
 		} else {
-			shootKunaiCooldown = 2.0f;
+			shootKunaiCooldown = 3.0f;
 			GameObject newKunai = Instantiate(kunai, new Vector3(transform.position.x, transform.position.y) , Quaternion.identity);
 			newKunai.GetComponent<kunaiScript> ().player = gameObject;
 
