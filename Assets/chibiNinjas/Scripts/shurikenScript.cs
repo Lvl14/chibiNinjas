@@ -27,7 +27,14 @@ public class shurikenScript : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter2D(Collider2D col){
-		if (col.tag != "Player") {
+		if (col.tag == "Break") {
+			PlayerScript scr = player.GetComponent<PlayerScript> ();
+			if (scr.breakStopped) {
+				scr.velocity = 0.03f;
+			}
+		}
+
+		if (col.tag != "Player" && col.tag != "Live") {
 			Destroy (gameObject);
 		}
 	}

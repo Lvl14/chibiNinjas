@@ -2,23 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class kunaiScript : MonoBehaviour {
+public class kunaiAimedScript : MonoBehaviour {
 
 	public float velocity;
 	public GameObject player;
+	public GameObject playerToAim;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
 	// Update is called once per frame
 	void Update () {
+		float dX = playerToAim.transform.position.x - transform.position.x;
+		float dY = playerToAim.transform.position.y - transform.position.y;
+
+		float deltaSum = Mathf.Sqrt (dX * dX + dY * dY);
+
+		float deltaX = dX / deltaSum;
+		float deltaY = dY / deltaSum;
+
+		Vector2 direction = new Vector2 (deltaX, deltaY);
+
 		if (player == null) {
 			Destroy (gameObject);
 		}
 		Vector3 pos = transform.position;
-		transform.position = new Vector3(pos.x + velocity, pos.y);
+		transform.position = new Vector3(pos.x + velocity*direction.x, pos.y+ velocity*direction.y);
 
 		float dist = (transform.position - player.transform.position).magnitude;
 		if (dist > 15.0f) {

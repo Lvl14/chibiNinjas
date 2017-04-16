@@ -6,10 +6,12 @@ public class PlayerScript : MonoBehaviour
 	private bool dead;
 	private bool canJumpFloor = false;
 	private bool canJumpPlatform = false;
+	private bool canSuperJump = false;
 	private float timeStunt = -1.0f;
 	private float shootCooldown = -1.0f;
 	private float liveCooldown = -1.0f;
 
+	public bool breakStopped = false;
 	public float velocity = 0.00f;
 	public Vector2 mouseClickedData;
 	public Vector3 startPoint;
@@ -75,7 +77,11 @@ public class PlayerScript : MonoBehaviour
     private void Jump()
     {
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        GetComponent<Rigidbody2D>().AddForce(Vector2.up * 300);
+		if (canSuperJump) {
+			GetComponent<Rigidbody2D> ().AddForce (Vector2.up * 900);
+		} else {
+			GetComponent<Rigidbody2D> ().AddForce (Vector2.up * 300);
+		}
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -89,11 +95,19 @@ public class PlayerScript : MonoBehaviour
 			if (col.tag == "Finish") {
 				Invoke("AdvanceLevel", 1.5f);
 			} 
+			if (col.tag == "Jumper") {
+				canSuperJump = true;
+			} 
 			if (col.tag == "Reset") {
 				GameObject.FindObjectOfType<GameManager> ().Life = 0;
 			} 
 			if (col.tag == "Stop") {
 				canJumpPlatform = true;
+				velocity = 0.00f;
+				transform.position = new Vector3 (col.transform.position.x - col.GetComponent<BoxCollider2D>().size.x/2 - GetComponent<BoxCollider2D>().size.x/2, transform.position.y, 0);
+			} 
+			if (col.tag == "Break") {
+				breakStopped = true;
 				velocity = 0.00f;
 				transform.position = new Vector3 (col.transform.position.x - col.GetComponent<BoxCollider2D>().size.x/2 - GetComponent<BoxCollider2D>().size.x/2, transform.position.y, 0);
 			} 
@@ -130,9 +144,16 @@ public class PlayerScript : MonoBehaviour
 			canJumpPlatform = false;
 			velocity = 0.03f;
 		} 
+		if (col.tag == "Break"){
+			velocity = 0.03f;
+			breakStopped = false;
+		} 
 		if (col.tag == "Floor"){
 			canJumpFloor = false;
 		}
+		if (col.tag == "Jumper") {
+			canSuperJump = false;
+		} 
 	}
 		
 	private void BackToMain()

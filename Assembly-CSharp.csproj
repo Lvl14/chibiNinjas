@@ -65,6 +65,7 @@
      <Compile Include="Assets\chibiNinjas\Scripts\PlayAgainScript.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\PlayerScript.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\SetScore.cs" />
+     <Compile Include="Assets\chibiNinjas\Scripts\kunaiAimedScript.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\kunaiScript.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\shurikenScript.cs" />
  <Reference Include="UnityEngine.UI">

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyScript : MonoBehaviour {
 	public int life = 5;
+	public int pointsMultiplier = 1;
 
 	private bool dead;
 	private float liveCooldown = -1.0f;
@@ -34,11 +35,11 @@ public class EnemyScript : MonoBehaviour {
 				}
 			}
 			if (col.tag == "Shuriken") {
-				GameObject.FindObjectOfType<GameManager>().Score += 20;
+				GameObject.FindObjectOfType<GameManager>().Score += 10*pointsMultiplier;
 				Destroy (gameObject);
 			}
 		} else {
-			GameObject.FindObjectOfType<GameManager>().Score += 10;
+			GameObject.FindObjectOfType<GameManager>().Score += 5*pointsMultiplier;
 			Destroy (gameObject);
 		}
 	}

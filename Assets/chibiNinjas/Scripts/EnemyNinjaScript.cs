@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyNinjaScript : MonoBehaviour {
 	public int life = 5;
+	public int pointMultiplier = 1;
 	public GameObject kunai;
 
 	private bool dead;
@@ -28,7 +29,12 @@ public class EnemyNinjaScript : MonoBehaviour {
 		} else {
 			shootKunaiCooldown = 3.0f;
 			GameObject newKunai = Instantiate(kunai, new Vector3(transform.position.x, transform.position.y) , Quaternion.identity);
-			newKunai.GetComponent<kunaiScript> ().player = gameObject;
+			kunaiScript script = newKunai.GetComponent<kunaiScript> ();
+			if (script != null) {
+				script.player = gameObject;
+			} else {
+				newKunai.GetComponent<kunaiAimedScript> ().player = gameObject;
+			}
 
 		}
 	}
@@ -44,11 +50,11 @@ public class EnemyNinjaScript : MonoBehaviour {
 				}
 			}
 			if (col.tag == "Shuriken") {
-				GameObject.FindObjectOfType<GameManager>().Score += 40;
+				GameObject.FindObjectOfType<GameManager>().Score += 40 * pointMultiplier;
 				Destroy (gameObject);
 			}
 		} else {
-			GameObject.FindObjectOfType<GameManager>().Score += 20;
+			GameObject.FindObjectOfType<GameManager>().Score += 20 * pointMultiplier;
 			Destroy (gameObject);
 		}
 	}
