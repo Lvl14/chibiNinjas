@@ -170,6 +170,7 @@ public class PlayerScript : MonoBehaviour
 	private void AdvanceLevel()
 	{
 		int currentScore = GameObject.FindObjectOfType<GameManager> ().Score;
+		GameObject.FindObjectOfType<GameManager> ().ScoreSession = currentScore;
 		int lvlScore = currentScore - PlayerPrefs.GetInt ("AcumulatedScore" + (SceneManager.GetActiveScene ().buildIndex - 1));
 		PlayerPrefs.SetInt ("AcumulatedScore" + SceneManager.GetActiveScene ().buildIndex, currentScore);
 		PlayerPrefs.SetInt ("LevelScore" + SceneManager.GetActiveScene ().buildIndex, lvlScore);

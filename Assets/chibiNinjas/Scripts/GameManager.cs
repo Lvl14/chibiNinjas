@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 
 	public TextMesh scoreLabel;
 	public static int score;
-	public static int sessionScore;
+	public static int sessionScore = 0;
 	public static int life;
 	public int Score
 	{
@@ -31,12 +31,22 @@ public class GameManager : MonoBehaviour
 			return life;
 		}
 	}
+	public int ScoreSession
+	{
+		set
+		{
+			sessionScore = value;
+		}
+		get
+		{
+			return sessionScore;
+		}
+	}
 
 	void Start (){
 		if (life <= 0) {
 			life = 7;
-			score = 0;
-			sessionScore = 0;
+			score = sessionScore;
 		}
 		scoreLabel.text = Score.ToString ();
 	}

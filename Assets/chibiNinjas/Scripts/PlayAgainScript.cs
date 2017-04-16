@@ -30,4 +30,24 @@ public class PlayAgainScript : MonoBehaviour {
 		PlayerPrefs.SetInt ("LevelScore0", 0);
 	}
 
+	public void ResetScores(){
+		PlayerPrefs.SetInt ("maxScore",0);
+		PlayerPrefs.SetInt ("maxScore1",0);
+		PlayerPrefs.SetInt ("maxScore2",0);
+		PlayerPrefs.SetInt ("maxScore3",0);
+		PlayerPrefs.SetInt ("maxScore4",0);
+		PlayerPrefs.SetInt ("maxScore5",0);
+		PlayerPrefs.SetInt ("maxScore6",0);
+
+
+		scoreLabel.text = PlayerPrefs.GetInt ("maxScore").ToString();
+		scoreLabel1.text = PlayerPrefs.GetInt ("maxScore1").ToString();
+		scoreLabel2.text = PlayerPrefs.GetInt ("maxScore3").ToString();
+		scoreLabel3.text = PlayerPrefs.GetInt ("maxScore5").ToString();
+		scoreLabel1Boss.text = PlayerPrefs.GetInt ("maxScore2").ToString();
+		scoreLabel2Boss.text = PlayerPrefs.GetInt ("maxScore4").ToString();
+		scoreLabel3Boss.text = PlayerPrefs.GetInt ("maxScore6").ToString();
+
+	}
+
 }
