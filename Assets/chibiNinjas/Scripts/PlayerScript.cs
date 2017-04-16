@@ -169,10 +169,25 @@ public class PlayerScript : MonoBehaviour
 
 	private void AdvanceLevel()
 	{
+		int currentScore = GameObject.FindObjectOfType<GameManager> ().Score;
+		int lvlScore = currentScore - PlayerPrefs.GetInt ("AcumulatedScore" + (SceneManager.GetActiveScene ().buildIndex - 1));
+		PlayerPrefs.SetInt ("AcumulatedScore" + SceneManager.GetActiveScene ().buildIndex, currentScore);
+		PlayerPrefs.SetInt ("LevelScore" + SceneManager.GetActiveScene ().buildIndex, lvlScore);
+
+		int maxScoreLvl = PlayerPrefs.GetInt ("maxScore" + SceneManager.GetActiveScene().buildIndex);
+
+		if (lvlScore > maxScoreLvl) {
+			PlayerPrefs.SetInt ("maxScore" + SceneManager.GetActiveScene().buildIndex, lvlScore);
+			Debug.Log ("Max score for lvl " + SceneManager.GetActiveScene().buildIndex +" is: " + lvlScore);
+		} else {
+			Debug.Log ("Max score for lvl " + SceneManager.GetActiveScene().buildIndex +" is still: " + maxScoreLvl);
+		}
+
 		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
 	}
 
-	private void SaveMaxScore () {
+	private void SaveMaxScore () { 
+		// when die get and update MAX score
 		int maxScore = PlayerPrefs.GetInt ("maxScore");
 		int currentScore = GameObject.FindObjectOfType<GameManager> ().Score;
 
@@ -182,6 +197,22 @@ public class PlayerScript : MonoBehaviour
 		} else {
 			Debug.Log ("Max score is still: " + maxScore);
 		}
+		// when die get and update MAX score on this lvl
+		int maxScoreLvl = PlayerPrefs.GetInt ("maxScore" + SceneManager.GetActiveScene().buildIndex);
+
+		int currentScoreTotal = GameObject.FindObjectOfType<GameManager> ().Score;
+
+		int currentScoreLvlPrev = PlayerPrefs.GetInt ("AcumulatedScore" + (SceneManager.GetActiveScene().buildIndex-1));
+		int currentScoreLvl = currentScoreTotal-currentScoreLvlPrev;
+		if (currentScoreLvl > maxScoreLvl) {
+			PlayerPrefs.SetInt ("maxScore" + SceneManager.GetActiveScene().buildIndex, currentScoreLvl);
+			Debug.Log ("Max score for lvl " + SceneManager.GetActiveScene().buildIndex +" is: " + currentScoreLvl);
+		} else {
+			Debug.Log ("Max score for lvl " + SceneManager.GetActiveScene().buildIndex +" is still: " + maxScoreLvl);
+		}
+
+
+
 	}
 
 }

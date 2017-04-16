@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 
 	public TextMesh scoreLabel;
 	public static int score;
+	public static int sessionScore;
 	public static int life;
 	public int Score
 	{
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
 		if (life <= 0) {
 			life = 7;
 			score = 0;
+			sessionScore = 0;
 		}
 		scoreLabel.text = Score.ToString ();
 	}

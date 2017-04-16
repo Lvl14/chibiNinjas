@@ -34,7 +34,7 @@ public class shurikenScript : MonoBehaviour {
 			}
 		}
 
-		if (col.tag != "Player" && col.tag != "Live") {
+		if (col.tag != "Player" && col.tag != "Live" && col.tag != "Score") {
 			Destroy (gameObject);
 		}
 	}

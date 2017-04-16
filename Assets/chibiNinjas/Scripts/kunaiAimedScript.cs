@@ -33,7 +33,7 @@ public class kunaiAimedScript : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter2D(Collider2D col){
-		if (col.tag != "Enemy" && col.tag != "Live") {
+		if (col.tag != "Enemy" && col.tag != "Live" && col.tag != "Score") {
 			Destroy (gameObject);
 		}
 	}
