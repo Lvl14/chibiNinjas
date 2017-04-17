@@ -211,9 +211,6 @@ public class PlayerScript : MonoBehaviour
 		} else {
 			Debug.Log ("Max score for lvl " + SceneManager.GetActiveScene().buildIndex +" is still: " + maxScoreLvl);
 		}
-
-
-
 	}
 
 }
