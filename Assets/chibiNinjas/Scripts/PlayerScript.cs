@@ -10,6 +10,8 @@ public class PlayerScript : MonoBehaviour
 	private float timeStunt = -1.0f;
 	private float shootCooldown = -1.0f;
 	private float liveCooldown = -1.0f;
+	private float grabCooldown = -1.0f;
+	private GameObject grabbed = null;
 
 	public bool breakStopped = false;
 	public float velocity = 0.00f;
@@ -19,6 +21,7 @@ public class PlayerScript : MonoBehaviour
 
     private void Start()
     {
+		grabbed = null;
         dead = false;
 		startPoint = transform.position;
     }
@@ -26,6 +29,10 @@ public class PlayerScript : MonoBehaviour
     private void Update()
     {
 		transform.position = new Vector3 (transform.position.x + (timeStunt <= 0.0f ? velocity : -velocity), transform.position.y, 0);
+
+		if (grabbed != null) {
+			grabbed.transform.position = new Vector3 (grabbed.transform.position.x + velocity, grabbed.transform.position.y, 0);
+		}
 
 		if (timeStunt <= 0.0f) {
 	        if (Input.GetMouseButtonDown(0) && !dead){
@@ -68,6 +75,9 @@ public class PlayerScript : MonoBehaviour
 			if (liveCooldown >= 0.0f) {
 				liveCooldown -= Time.deltaTime;
 			}
+			if (grabCooldown >= 0.0f) {
+				grabCooldown -= Time.deltaTime;
+			}
 		} 
 		if (dead) {
 			Invoke("ResetLevel", 1.5f);
@@ -106,6 +116,15 @@ public class PlayerScript : MonoBehaviour
 				velocity = 0.00f;
 				transform.position = new Vector3 (col.transform.position.x - col.GetComponent<BoxCollider2D>().size.x/2 - GetComponent<BoxCollider2D>().size.x/2, transform.position.y, 0);
 			} 
+			if (col.tag == "StopGrab" && grabbed != null) {
+				canJumpPlatform = true;
+				velocity = 0.00f;
+				transform.position = new Vector3 (col.transform.position.x - col.GetComponent<BoxCollider2D>().size.x/2 - GetComponent<BoxCollider2D>().size.x/2, transform.position.y, 0);
+				grabbed = null;
+			} 
+			if (col.tag == "Grab" && grabCooldown < 0.0f) {
+				grabbed = col.gameObject;
+			} 
 			if (col.tag == "Break") {
 				breakStopped = true;
 				velocity = 0.00f;
@@ -140,10 +159,15 @@ public class PlayerScript : MonoBehaviour
 	}
 		
 	private void OnTriggerExit2D(Collider2D col){
-		if (col.tag == "Stop"){
+		if (col.tag == "Stop" || col.tag == "Grab"){
 			canJumpPlatform = false;
 			velocity = 0.03f;
 		} 
+
+		if (col.tag == "Grab" || col.tag == "StopGrab"){
+			grabCooldown = 3.0f;
+		} 
+
 		if (col.tag == "Break"){
 			velocity = 0.03f;
 			breakStopped = false;

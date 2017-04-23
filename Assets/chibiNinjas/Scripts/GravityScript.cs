@@ -9,7 +9,7 @@ public class GravityScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Vector3 pos = transform.position;
-		transform.position = pos;
+		pos.y -= 0.1f;
 		RaycastHit2D hitGround = Physics2D.Raycast (pos, Vector2.down, 50.0f);
 		if (hitGround.collider!=null){
 			CircleCollider2D circle = transform.GetComponent<CircleCollider2D> ();
@@ -37,6 +37,7 @@ public class GravityScript : MonoBehaviour {
 	void Update () {
 		Vector3 pos = new Vector3(transform.position.x, transform.position.y > floorPos ? transform.position.y : floorPos, 0);
 		transform.position = pos;
+		pos.y -= 0.1f;
 		RaycastHit2D hitGround = Physics2D.Raycast (pos, Vector2.down, 50.0f);
 		if (hitGround.collider!=null){
 			CircleCollider2D circle = transform.GetComponent<CircleCollider2D> ();
