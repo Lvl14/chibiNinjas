@@ -7,17 +7,16 @@ public class PlayerScript : MonoBehaviour
 	private bool canJumpFloor = false;
 	private bool canJumpPlatform = false;
 	private bool canSuperJump = false;
+	private bool jumpDiagonalRight = false;
+	private bool jumpDiagonalLeft = false;
 	private float timeStunt = -1.0f;
 	private float shootCooldown = -1.0f;
 	private float liveCooldown = -1.0f;
 	private float grabCooldown = -1.0f;
 	private GameObject grabbed = null;
-	private int floorsTransition = 0;
-	private int stopLTransition = 0;
+	private int floorTransition = 0;
 	private int stopRTransition = 0;
-
-	private bool jumpDiagonalRight = false;
-	private bool jumpDiagonalLeft = false;
+	private int stopLTransition = 0;
 
 
 	public bool breakStopped = false;
@@ -47,7 +46,7 @@ public class PlayerScript : MonoBehaviour
 				Vector3 mouseClicked = Camera.main.ScreenToWorldPoint (Input.mousePosition);
 				bool isBesidePlayer = mouseClicked.x <= transform.position.x;
 
-				if (isBesidePlayer && (canJumpFloor || canJumpPlatform)) {
+				if (isBesidePlayer && (canJumpFloor || canJumpPlatform || jumpDiagonalLeft || jumpDiagonalRight)) {
 					Jump ();
 				} else if (!isBesidePlayer && shootCooldown <= 0.0f) {
 					// Disparo
@@ -103,11 +102,27 @@ public class PlayerScript : MonoBehaviour
 		}else {
 			GetComponent<Rigidbody2D> ().AddForce (Vector2.up * 300);
 		}
+		if (!canJumpPlatform) {
+			JumpRestrict ();
+		}
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-		
+	private void JumpRestrict(){
+		canJumpFloor = false;
+		canJumpPlatform = false;
+		canSuperJump = false;
+		jumpDiagonalRight = false;
+		jumpDiagonalLeft = false;
+		floorTransition = 0;
+		stopRTransition = 0;
+		stopLTransition = 0;
+
+	}
+
+
+	private void OnTriggerEnter2D(Collider2D col)
+	{
+
 		if (!dead) {
 			if (col.tag == "Score") {
 				GameObject.FindObjectOfType<GameManager> ().Score++;
@@ -130,7 +145,6 @@ public class PlayerScript : MonoBehaviour
 			if (col.tag == "StopRight") {
 				GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 				stopRTransition++;
-				canJumpPlatform = true;
 				jumpDiagonalLeft = true;
 				velocity = 0.00f;
 				transform.position = new Vector3 (col.transform.position.x - col.GetComponent<BoxCollider2D>().size.x/2 - GetComponent<BoxCollider2D>().size.x/2, transform.position.y, 0);
@@ -138,7 +152,6 @@ public class PlayerScript : MonoBehaviour
 			if (col.tag == "StopLeft") {
 				stopLTransition++;
 				GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-				canJumpPlatform = true;
 				jumpDiagonalRight = true;
 				velocity = 0.00f;
 				transform.position = new Vector3 (col.transform.position.x + col.GetComponent<BoxCollider2D>().size.x/2, transform.position.y, 0);
@@ -161,7 +174,7 @@ public class PlayerScript : MonoBehaviour
 				GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 				canJumpFloor = true;
 				velocity = 0.03f;
-				++floorsTransition;
+				++floorTransition;
 			}
 			if (col.tag == "Roof") {
 				GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0.0f);
@@ -190,7 +203,7 @@ public class PlayerScript : MonoBehaviour
 			}
 		}
 	}
-		
+
 	private void OnTriggerExit2D(Collider2D col){
 		if (col.tag == "Stop" || col.tag == "Grab"){
 			canJumpPlatform = false;
@@ -222,8 +235,8 @@ public class PlayerScript : MonoBehaviour
 			breakStopped = false;
 		} 
 		if (col.tag == "Floor"){
-			--floorsTransition;
-			if (floorsTransition == 0) {
+			--floorTransition;
+			if (floorTransition == 0) {
 				canJumpFloor = false;
 			}
 		}
@@ -240,7 +253,8 @@ public class PlayerScript : MonoBehaviour
 	private void ResetLevel()
 	{
 		SaveMaxScore ();
-		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+		PlayerPrefs.SetInt ("currentLevel", SceneManager.GetActiveScene ().buildIndex);
+		SceneManager.LoadScene (0);
 	}
 
 	private void AdvanceLevel()

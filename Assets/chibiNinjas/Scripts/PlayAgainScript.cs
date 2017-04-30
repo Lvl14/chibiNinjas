@@ -30,6 +30,12 @@ public class PlayAgainScript : MonoBehaviour {
 		PlayerPrefs.SetInt ("LevelScore0", 0);
 	}
 
+	public void ContinueLevel(){
+		int level = PlayerPrefs.GetInt ("currentLevel");
+		Debug.Log ("Trying to load scene " + level.ToString());
+		SceneManager.LoadScene (level);
+	}
+
 	public void ResetScores(){
 		PlayerPrefs.SetInt ("maxScore",0);
 		PlayerPrefs.SetInt ("maxScore1",0);
