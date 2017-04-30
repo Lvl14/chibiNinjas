@@ -12,6 +12,13 @@ public class PlayerScript : MonoBehaviour
 	private float liveCooldown = -1.0f;
 	private float grabCooldown = -1.0f;
 	private GameObject grabbed = null;
+	private int floorsTransition = 0;
+	private int stopLTransition = 0;
+	private int stopRTransition = 0;
+
+	private bool jumpDiagonalRight = false;
+	private bool jumpDiagonalLeft = false;
+
 
 	public bool breakStopped = false;
 	public float velocity = 0.00f;
@@ -89,7 +96,11 @@ public class PlayerScript : MonoBehaviour
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 		if (canSuperJump) {
 			GetComponent<Rigidbody2D> ().AddForce (Vector2.up * 900);
-		} else {
+		} else if (jumpDiagonalRight){
+			GetComponent<Rigidbody2D> ().AddForce (new Vector2(0.3f,1.0f) * 400);
+		}else if (jumpDiagonalLeft){
+			GetComponent<Rigidbody2D> ().AddForce (new Vector2(-0.3f,1.0f) * 400);
+		}else {
 			GetComponent<Rigidbody2D> ().AddForce (Vector2.up * 300);
 		}
     }
@@ -116,6 +127,22 @@ public class PlayerScript : MonoBehaviour
 				velocity = 0.00f;
 				transform.position = new Vector3 (col.transform.position.x - col.GetComponent<BoxCollider2D>().size.x/2 - GetComponent<BoxCollider2D>().size.x/2, transform.position.y, 0);
 			} 
+			if (col.tag == "StopRight") {
+				GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+				stopRTransition++;
+				canJumpPlatform = true;
+				jumpDiagonalLeft = true;
+				velocity = 0.00f;
+				transform.position = new Vector3 (col.transform.position.x - col.GetComponent<BoxCollider2D>().size.x/2 - GetComponent<BoxCollider2D>().size.x/2, transform.position.y, 0);
+			}
+			if (col.tag == "StopLeft") {
+				stopLTransition++;
+				GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+				canJumpPlatform = true;
+				jumpDiagonalRight = true;
+				velocity = 0.00f;
+				transform.position = new Vector3 (col.transform.position.x + col.GetComponent<BoxCollider2D>().size.x/2, transform.position.y, 0);
+			}
 			if (col.tag == "StopGrab" && grabbed != null) {
 				canJumpPlatform = true;
 				velocity = 0.00f;
@@ -131,7 +158,13 @@ public class PlayerScript : MonoBehaviour
 				transform.position = new Vector3 (col.transform.position.x - col.GetComponent<BoxCollider2D>().size.x/2 - GetComponent<BoxCollider2D>().size.x/2, transform.position.y, 0);
 			} 
 			if (col.tag == "Floor") {
+				GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 				canJumpFloor = true;
+				velocity = 0.03f;
+				++floorsTransition;
+			}
+			if (col.tag == "Roof") {
+				GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0.0f);
 			}
 			if (col.tag == "kunai") {
 				GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
@@ -164,6 +197,22 @@ public class PlayerScript : MonoBehaviour
 			velocity = 0.03f;
 		} 
 
+		if (col.tag == "StopRight") {
+			stopRTransition--;
+			if (stopRTransition == 0) {
+				canJumpPlatform = false;
+				jumpDiagonalLeft = false;
+			}
+		}
+		if (col.tag == "StopLeft") {
+			stopLTransition--;
+			if (stopLTransition == 0) {
+				canJumpPlatform = false;
+				jumpDiagonalRight = false;
+			}
+		}
+
+
 		if (col.tag == "Grab" || col.tag == "StopGrab"){
 			grabCooldown = 3.0f;
 		} 
@@ -173,7 +222,10 @@ public class PlayerScript : MonoBehaviour
 			breakStopped = false;
 		} 
 		if (col.tag == "Floor"){
-			canJumpFloor = false;
+			--floorsTransition;
+			if (floorsTransition == 0) {
+				canJumpFloor = false;
+			}
 		}
 		if (col.tag == "Jumper") {
 			canSuperJump = false;
