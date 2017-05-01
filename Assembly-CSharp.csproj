@@ -52,6 +52,7 @@
      <Compile Include="Assets\chibiNinjas\Scripts\AlarmClockScript.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\AudioController.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\BackAndroid.cs" />
+     <Compile Include="Assets\chibiNinjas\Scripts\BossScript.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\BoxScript.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\CameraAspect.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\EnemyNinjaScript.cs" />

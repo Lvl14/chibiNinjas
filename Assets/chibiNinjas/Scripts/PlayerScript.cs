@@ -86,7 +86,7 @@ public class PlayerScript : MonoBehaviour
 			}
 		} 
 		if (dead) {
-			Invoke("ResetLevel", 1.5f);
+			Invoke("ResetLevel", 1.0f);
 		}
     }
 
@@ -129,7 +129,7 @@ public class PlayerScript : MonoBehaviour
 				Destroy (col.gameObject);
 			} 
 			if (col.tag == "Finish") {
-				Invoke("AdvanceLevel", 1.5f);
+				Invoke("AdvanceLevel", 1.0f);
 			} 
 			if (col.tag == "Jumper") {
 				canSuperJump = true;
@@ -259,6 +259,17 @@ public class PlayerScript : MonoBehaviour
 
 	private void AdvanceLevel()
 	{
+		EndLevel(SceneManager.GetActiveScene().buildIndex+1);
+	}
+
+	public void EndGame(int levelToGo)
+	{
+		SaveMaxScore ();
+		EndLevel(levelToGo);
+	}
+
+	private void EndLevel(int levelToGo)
+	{
 		int currentScore = GameObject.FindObjectOfType<GameManager> ().Score;
 		GameObject.FindObjectOfType<GameManager> ().ScoreSession = currentScore;
 		int lvlScore = currentScore - PlayerPrefs.GetInt ("AcumulatedScore" + (SceneManager.GetActiveScene ().buildIndex - 1));
@@ -274,7 +285,7 @@ public class PlayerScript : MonoBehaviour
 			Debug.Log ("Max score for lvl " + SceneManager.GetActiveScene().buildIndex +" is still: " + maxScoreLvl);
 		}
 
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+		SceneManager.LoadScene(levelToGo);
 	}
 
 	private void SaveMaxScore () { 
