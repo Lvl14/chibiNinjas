@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class LiveManager : MonoBehaviour {
-	public GameObject player;
+	public bool isplayer;
 	public Sprite live_ok;
 	public Sprite live_ko;
 	public int live_num;
@@ -20,10 +20,18 @@ public class LiveManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (GameObject.FindObjectOfType<GameManager>().Life >= live_num && renderer.sprite != live_ok) {
-			renderer.sprite = live_ok;
-		} else if (GameObject.FindObjectOfType<GameManager>().Life < live_num && renderer.sprite != live_ko) {
-			renderer.sprite = live_ko;
+		if (isplayer) {
+			if (GameObject.FindObjectOfType<GameManager> ().Life >= live_num && renderer.sprite != live_ok) {
+				renderer.sprite = live_ok;
+			} else if (GameObject.FindObjectOfType<GameManager> ().Life < live_num && renderer.sprite != live_ko) {
+				renderer.sprite = live_ko;
+			}
+		} else {
+			if (GameObject.FindObjectOfType<GameManager> ().BossLife >= live_num && renderer.sprite != live_ok) {
+				renderer.sprite = live_ok;
+			} else if (GameObject.FindObjectOfType<GameManager> ().BossLife  < live_num && renderer.sprite != live_ko) {
+				renderer.sprite = live_ko;
+			}
 		}
 	}
 }
