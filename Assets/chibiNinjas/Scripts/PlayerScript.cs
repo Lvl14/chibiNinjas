@@ -34,7 +34,7 @@ public class PlayerScript : MonoBehaviour
 
     private void Update()
     {
-		transform.position = new Vector3 (transform.position.x + (timeStunt <= 0.0f ? velocity : -velocity), transform.position.y, 0);
+		transform.position = new Vector3 (transform.position.x + (timeStunt <= 0.0f ? velocity : 0.0f), transform.position.y, 0);
 
 		if (grabbed != null) {
 			grabbed.transform.position = new Vector3 (grabbed.transform.position.x + velocity, grabbed.transform.position.y, 0);
@@ -181,7 +181,7 @@ public class PlayerScript : MonoBehaviour
 			}
 			if (col.tag == "kunai") {
 				GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
-				GetComponent<Rigidbody2D> ().AddForce (Vector2.up * 50);
+				GetComponent<Rigidbody2D> ().AddForce (new Vector2(-1.0f,0.5f) * 150);
 				timeStunt = 1.0f;
 				if (liveCooldown <= 0.0f) {
 					GameObject.FindObjectOfType<GameManager>().Life -= 2;
@@ -191,7 +191,7 @@ public class PlayerScript : MonoBehaviour
 			}
 			if (col.tag == "Enemy") {
 				GetComponent<Rigidbody2D> ().velocity = Vector2.zero;
-				GetComponent<Rigidbody2D> ().AddForce (Vector2.up * 100);
+				GetComponent<Rigidbody2D> ().AddForce (new Vector2(-0.5f,1.0f) * 200);
 				timeStunt = 1.0f;
 				if (liveCooldown <= 0.0f) {
 					GameObject.FindObjectOfType<GameManager>().Life -= 1;

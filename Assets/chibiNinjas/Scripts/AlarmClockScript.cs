@@ -12,8 +12,10 @@ public class AlarmClockScript : MonoBehaviour {
 	public int clockLiveR = 5;
 
 	private bool countDown = false;
+	private bool broken = false;
 
 	public GameObject clock;
+	public Sprite clockB;
 	public GameObject clockL;
 	public GameObject clockR;
 
@@ -31,6 +33,10 @@ public class AlarmClockScript : MonoBehaviour {
 		if (clockLive <= 0) {
 			GameObject.FindObjectOfType<GameManager> ().Score += time*50;
 			AdvanceLevel ();
+		}
+		if (clockLive < 20 && !broken) {
+			broken = true;
+			clock.GetComponent<UnityEngine.UI.Image> ().sprite = clockB;
 		}
 		if (totalTime <= 0.0f) {
 			ResetLevel ();

@@ -19,34 +19,35 @@ public class BossScript : MonoBehaviour {
 			player.GetComponent<PlayerScript> ().EndGame(0);
 		}
 
-		transform.position = new Vector3 (player.transform.position.x + 8, transform.position.y, 0);
+		if (transform.position.x - player.transform.position.x < 8) {
+			transform.position = new Vector3 (player.transform.position.x + 8, transform.position.y, 0);
+            // timer Cooldowns only if boss is moving
+            if (jumpCoolDown >= 0.0f){
+                jumpCoolDown -= Time.deltaTime;
+            } else{
+                jumpCoolDown = Random.Range(4.0f, 6.0f);
+                GetComponent<Rigidbody2D>().AddForce(Vector2.up * 300);
+            }
+            if (liveCooldown >= 0.0f){
+                liveCooldown -= Time.deltaTime;
+            }
 
+            if (shootKunaiCooldown >= 0.0f){
+                shootKunaiCooldown -= Time.deltaTime;
+            } else{
+                shootKunaiCooldown = Random.Range(1.0f, 3.0f);
+                GameObject newKunai = Instantiate(kunai, new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
+                newKunai.GetComponent<kunaiAimedScript>().player = gameObject;
+            }
 
-		if (jumpCoolDown >= 0.0f) {
-			jumpCoolDown -= Time.deltaTime;
-		} else {
-			jumpCoolDown = Random.Range(4.0f, 6.0f);
-			GetComponent<Rigidbody2D> ().AddForce (Vector2.up * 300);
-		}
-		if (liveCooldown >= 0.0f) {
-			liveCooldown -= Time.deltaTime;
-		}
-
-		if (shootKunaiCooldown >= 0.0f) {
-			shootKunaiCooldown -= Time.deltaTime;
-		} else {
-			shootKunaiCooldown = Random.Range(1.0f, 3.0f);
-			GameObject newKunai = Instantiate(kunai, new Vector3(transform.position.x, transform.position.y) , Quaternion.identity);
-			newKunai.GetComponent<kunaiAimedScript> ().player = gameObject;
-		}
-
-		if (shootOtherCooldown >= 0.0f) {
-			shootOtherCooldown -= Time.deltaTime;
-		} else {
-			shootOtherCooldown = Random.Range(2.5f, 5.0f);
-			int item = Random.Range (0, items.Count);
-			GameObject newItem = Instantiate(items[item], new Vector3(transform.position.x, transform.position.y) , Quaternion.identity);
-		}
+            if (shootOtherCooldown >= 0.0f){
+                shootOtherCooldown -= Time.deltaTime;
+            } else{
+                shootOtherCooldown = Random.Range(2.5f, 5.0f);
+                int item = Random.Range(0, items.Count);
+                GameObject newItem = Instantiate(items[item], new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
+            }
+        }
 	}
 
 
