@@ -15,11 +15,11 @@ public class kunaiAimedScript : MonoBehaviour {
 		}
 		float dist = (transform.position - player.transform.position).magnitude;
 
-		if (dist > 15.0f) {
+		if (dist > 20.0f) {
 			Destroy (gameObject);
 		}
 		Vector2 direction = Vector2.left;
-		if (dist <= 5.0f) {
+		if (dist <= 15.0f) {
 			float dX = playerToAim.transform.position.x - transform.position.x;
 			float dY = playerToAim.transform.position.y - transform.position.y;
 

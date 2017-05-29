@@ -21,7 +21,7 @@ public class kunaiScript : MonoBehaviour {
 		transform.position = new Vector3(pos.x + velocity, pos.y);
 
 		float dist = (transform.position - player.transform.position).magnitude;
-		if (dist > 15.0f) {
+		if (dist > 20.0f) {
 			Destroy (gameObject);
 		}
 	}

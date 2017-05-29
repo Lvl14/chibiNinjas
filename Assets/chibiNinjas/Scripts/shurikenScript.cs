@@ -21,7 +21,7 @@ public class shurikenScript : MonoBehaviour {
 		transform.position = new Vector3(pos.x + direction.x * velocity, pos.y+direction.y * velocity);
 
 		float dist = (transform.position - player.transform.position).magnitude;
-		if (dist > 15.0f) {
+		if (dist > 20.0f) {
 			Destroy (gameObject);
 		}
 	}
