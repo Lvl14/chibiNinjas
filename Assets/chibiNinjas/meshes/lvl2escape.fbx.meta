@@ -18,12 +18,15 @@ ModelImporter:
     2300000: lv_2_escape
     2300002: mida_canvi_1unitat_MeshPart0
     2300004: mida_canvi_1unitat_MeshPart1
+    2300006: mida_canvi_1unitat
     3300000: lv_2_escape
     3300002: mida_canvi_1unitat_MeshPart0
     3300004: mida_canvi_1unitat_MeshPart1
+    3300006: mida_canvi_1unitat
     4300000: lv_2_escape
     4300002: mida_canvi_1unitat_MeshPart0
     4300004: mida_canvi_1unitat_MeshPart1
+    4300006: mida_canvi_1unitat
   materials:
     importMaterials: 1
     materialName: 0
