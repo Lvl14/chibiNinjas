@@ -45,7 +45,7 @@ public class BossScript : MonoBehaviour {
             } else{
                 shootOtherCooldown = Random.Range(2.5f, 5.0f);
                 int item = Random.Range(0, items.Count);
-                GameObject newItem = Instantiate(items[item], new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
+                Instantiate(items[item], new Vector3(transform.position.x, transform.position.y), Quaternion.identity);
             }
         }
 	}

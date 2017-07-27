@@ -37,7 +37,7 @@ public class kunaiAimedScript : MonoBehaviour {
 	}
 
 	private void OnTriggerEnter2D(Collider2D col){
-		if (col.tag != "Enemy" && col.tag != "FinalBoss" && col.tag != "Live" && col.tag != "Score") {
+		if (col.tag != "Enemy" && col.tag != "FinalBoss" && col.tag != "Live" && col.tag != "Score"  && col.tag != "CameraStopMoving" && col.tag != "CameraStopMovingYUp" && col.tag != "CameraStopMovingYDown") {
 			Destroy (gameObject);
 		}
 	}

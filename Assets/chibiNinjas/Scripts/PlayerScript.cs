@@ -5,10 +5,10 @@ public class PlayerScript : MonoBehaviour
 {
 	private bool dead;
 	private bool canJumpFloor = false;
-	private bool canJumpPlatform = false;
 	private bool canSuperJump = false;
 	private bool jumpDiagonalRight = false;
 	private bool jumpDiagonalLeft = false;
+	private float startCooldown = 2.0f;
 	private float timeStunt = -1.0f;
 	private float shootCooldown = -1.0f;
 	private float liveCooldown = -1.0f;
@@ -18,7 +18,7 @@ public class PlayerScript : MonoBehaviour
 	private int stopRTransition = 0;
 	private int stopLTransition = 0;
 
-
+	public bool canJumpPlatform = false;
 	public bool breakStopped = false;
 	public float velocity = 0.00f;
 	public Vector2 mouseClickedData;
@@ -33,62 +33,67 @@ public class PlayerScript : MonoBehaviour
     }
 
     private void Update()
-    {
-		transform.position = new Vector3 (transform.position.x + (timeStunt <= 0.0f ? velocity : 0.0f), transform.position.y, 0);
+	{
+		if (startCooldown > 0.0f) {
+			startCooldown -= Time.deltaTime;
+		} else {
 
-		if (grabbed != null) {
-			grabbed.transform.position = new Vector3 (grabbed.transform.position.x + velocity, grabbed.transform.position.y, 0);
-		}
+			transform.position = new Vector3 (transform.position.x + (timeStunt <= 0.0f ? velocity : 0.0f), transform.position.y, 0);
 
-		if (timeStunt <= 0.0f) {
-	        if (Input.GetMouseButtonDown(0) && !dead){
-	            //RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
-				Vector3 mouseClicked = Camera.main.ScreenToWorldPoint (Input.mousePosition);
-				bool isBesidePlayer = mouseClicked.x <= transform.position.x;
+			if (grabbed != null) {
+				grabbed.transform.position = new Vector3 (grabbed.transform.position.x + velocity, grabbed.transform.position.y, 0);
+			}
 
-				if (isBesidePlayer && (canJumpFloor || canJumpPlatform || jumpDiagonalLeft || jumpDiagonalRight)) {
-					Jump ();
-				} else if (!isBesidePlayer && shootCooldown <= 0.0f) {
-					// Disparo
-					float dX = mouseClicked.x - transform.position.x;
-					float dY = mouseClicked.y - transform.position.y;
+			if (timeStunt <= 0.0f) {
+				if (Input.GetMouseButtonDown (0) && !dead) {
+					//RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), Vector2.zero);
+					Vector3 mouseClicked = Camera.main.ScreenToWorldPoint (Input.mousePosition);
+					bool isBesidePlayer = mouseClicked.x <= transform.position.x;
 
-					float deltaSum = Mathf.Sqrt (dX * dX + dY * dY);
+					if (isBesidePlayer && (canJumpFloor || canJumpPlatform || jumpDiagonalLeft || jumpDiagonalRight)) {
+						Jump ();
+					} else if (!isBesidePlayer && shootCooldown <= 0.0f) {
+						// Disparo
+						float dX = mouseClicked.x - transform.position.x;
+						float dY = mouseClicked.y - transform.position.y;
 
-					float deltaX = dX / deltaSum;
-					float deltaY = dY / deltaSum;
+						float deltaSum = Mathf.Sqrt (dX * dX + dY * dY);
+
+						float deltaX = dX / deltaSum;
+						float deltaY = dY / deltaSum;
 
 
-					mouseClickedData = new Vector2 (deltaX, deltaY);
-					shootCooldown = 0.5f;
+						mouseClickedData = new Vector2 (deltaX, deltaY);
+						shootCooldown = 0.5f;
 
-					GameObject newShuriken = Instantiate(shuriken, new Vector3(transform.position.x, transform.position.y) , Quaternion.identity);
-					newShuriken.GetComponent<shurikenScript> ().direction = mouseClickedData;
-					newShuriken.GetComponent<shurikenScript> ().player = gameObject;
+						GameObject newShuriken = Instantiate (shuriken, new Vector3 (transform.position.x, transform.position.y), Quaternion.identity);
+						newShuriken.GetComponent<shurikenScript> ().direction = mouseClickedData;
+						newShuriken.GetComponent<shurikenScript> ().player = gameObject;
+					}
 				}
-	        }
-		} 
-		if (!dead) {
-			if (GameObject.FindObjectOfType<GameManager> ().Life <= 0) {
-				dead = true;
+			} 
+			if (!dead) {
+				if (GameObject.FindObjectOfType<GameManager> ().Life <= 0) {
+					dead = true;
+				}
+				if (shootCooldown >= 0.0f) {
+					shootCooldown -= Time.deltaTime;
+				}
+				if (timeStunt >= 0.0f) {
+					timeStunt -= Time.deltaTime;
+				}
+				if (liveCooldown >= 0.0f) {
+					liveCooldown -= Time.deltaTime;
+				}
+				if (grabCooldown >= 0.0f) {
+					grabCooldown -= Time.deltaTime;
+				}
+			} 
+			if (dead) {
+				Invoke ("ResetLevel", 1.0f);
 			}
-			if (shootCooldown >= 0.0f) {
-				shootCooldown -= Time.deltaTime;
-			}
-			if (timeStunt >= 0.0f) {
-				timeStunt -= Time.deltaTime;
-			}
-			if (liveCooldown >= 0.0f) {
-				liveCooldown -= Time.deltaTime;
-			}
-			if (grabCooldown >= 0.0f) {
-				grabCooldown -= Time.deltaTime;
-			}
-		} 
-		if (dead) {
-			Invoke("ResetLevel", 1.0f);
 		}
-    }
+	}
 
     private void Jump()
     {
@@ -173,8 +178,10 @@ public class PlayerScript : MonoBehaviour
 			if (col.tag == "Floor") {
 				GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 				canJumpFloor = true;
-				velocity = 0.03f;
 				++floorTransition;
+				if (!canJumpPlatform){
+					velocity = 0.03f;
+				} 
 			}
 			if (col.tag == "Roof") {
 				GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, 0.0f);

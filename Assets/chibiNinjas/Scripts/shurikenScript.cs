@@ -34,7 +34,7 @@ public class shurikenScript : MonoBehaviour {
 			}
 		}
 
-		if (col.tag != "Player" && col.tag != "Live" && col.tag != "Score" && col.tag != "StopLeft") {
+		if (col.tag != "Player" && col.tag != "Live" && col.tag != "Score" && col.tag != "StopLeft" && col.tag != "CameraStopMoving" && col.tag != "CameraStopMovingYUp" && col.tag != "CameraStopMovingYDown") {
 			Destroy (gameObject);
 		}
 	}

@@ -9,6 +9,29 @@ public class GameManager : MonoBehaviour
 	public static int sessionScore = 0;
 	public static int life;
 	public static int bosslife;
+	public static float[] maxCameraX = 	new float[]	{0.0f,	63.5f,	0.0f, 	76.5f,	0.0f,	0.0f,	0.0f};
+	public static float[] maxCameraY = 	new float[]	{0.0f,	8.0f,	0.0f,	12.0f,	0.0f,	0.0f,	0.0f};
+	public static float[] minCameraY = 	new float[]	{0.0f,	6.0f,	0.0f,	8.0f,	0.0f,	0.0f,	0.0f};
+
+
+	public float[] MaxCameraX {
+		get{
+			return maxCameraX;
+		}
+	}	
+
+	public float[] MaxCameraY {
+		get{
+			return maxCameraY;
+		}
+	}
+
+	public float[] MinCameraY {
+		get{
+			return minCameraY;
+		}
+	}
+
 	public int Score
 	{
 		set

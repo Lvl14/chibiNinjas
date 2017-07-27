@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LiveManager : MonoBehaviour {
 	public bool isplayer;
@@ -8,7 +9,7 @@ public class LiveManager : MonoBehaviour {
 	public Sprite live_ko;
 	public int live_num;
 
-	private SpriteRenderer renderer;
+	private SpriteRenderer renderer = new SpriteRenderer();
 
 	// Use this for initialization
 	void Start () {

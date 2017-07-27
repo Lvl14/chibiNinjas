@@ -29,12 +29,14 @@ public class GravityScript : MonoBehaviour {
 			Vector2 vel = regidbody.velocity;
 			currvel = vel.y;
 			if (currvel < maxVel) {
-				GetComponent<Rigidbody2D>().velocity =  new Vector2(vel.x, maxVel);
+				GetComponent<Rigidbody2D> ().velocity = new Vector2 (vel.x, maxVel);
+			} else if (transform.position.y <= floorPos) {
+				GetComponent<Rigidbody2D> ().velocity = new Vector2 (0.0f, 0.0f);
 			}
 		}
 	}
 
-	void Update () {
+	void LateUpdate () {
 		Vector3 pos = new Vector3(transform.position.x, transform.position.y > floorPos ? transform.position.y : floorPos, 0);
 		transform.position = pos;
 		pos.y -= 0.1f;

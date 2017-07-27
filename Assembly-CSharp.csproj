@@ -63,6 +63,7 @@
      <Compile Include="Assets\chibiNinjas\Scripts\GravityScript.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\LiveManager.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\LiveScript.cs" />
+     <Compile Include="Assets\chibiNinjas\Scripts\MovingScoreManager.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\ObjectMove.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\OpenLevel.cs" />
      <Compile Include="Assets\chibiNinjas\Scripts\PlayAgainScript.cs" />
