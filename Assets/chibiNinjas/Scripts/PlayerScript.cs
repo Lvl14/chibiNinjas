@@ -32,7 +32,7 @@ public class PlayerScript : MonoBehaviour
 		startPoint = transform.position;
     }
 
-    private void Update()
+    private void LateUpdate()
 	{
 		if (startCooldown > 0.0f) {
 			startCooldown -= Time.deltaTime;
