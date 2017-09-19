@@ -9,11 +9,12 @@ public class GravityScript : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Vector3 pos = transform.position;
-		pos.y -= 0.1f;
+		BoxCollider2D boxOwn = transform.GetComponent<BoxCollider2D> ();
+		pos.y -= (boxOwn.size.y / 2.0f* transform.lossyScale.y);
 		RaycastHit2D hitGround = Physics2D.Raycast (pos, Vector2.down, 50.0f);
 		if (hitGround.collider!=null){
 			BoxCollider2D box = transform.GetComponent<BoxCollider2D> ();
-			floorPos = hitGround.point.y + box.size.y / 2.0f * transform.lossyScale.y;
+			if (box!=null)floorPos = hitGround.point.y + box.size.y / 2.0f * transform.lossyScale.y;
 		}
 	}
 
@@ -34,11 +35,13 @@ public class GravityScript : MonoBehaviour {
 	void LateUpdate () {
 		Vector3 pos = new Vector3(transform.position.x, transform.position.y > floorPos ? transform.position.y : floorPos, 0.0f);
 		transform.position = pos;
-		pos.y -= 0.1f;
+		BoxCollider2D boxOwn = transform.GetComponent<BoxCollider2D> ();
+		pos.y -= (boxOwn.size.y / 2.0f* transform.lossyScale.y);
+
 		RaycastHit2D hitGround = Physics2D.Raycast (pos, Vector2.down, 50.0f);
 		if (hitGround.collider!=null){
 			BoxCollider2D box = transform.GetComponent<BoxCollider2D> ();
-			floorPos = hitGround.point.y + box.size.y / 2.0f * transform.lossyScale.y;
+			if (box!=null)floorPos = hitGround.point.y + box.size.y / 2.0f * transform.lossyScale.y;
 		}
 	}
 }

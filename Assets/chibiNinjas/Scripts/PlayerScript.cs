@@ -134,6 +134,7 @@ public class PlayerScript : MonoBehaviour
 				Destroy (col.gameObject);
 			} 
 			if (col.tag == "Finish") {
+				velocity = 0.00f;
 				Invoke("AdvanceLevel", 1.0f);
 			} 
 			if (col.tag == "Jumper") {
@@ -145,7 +146,7 @@ public class PlayerScript : MonoBehaviour
 			if (col.tag == "Stop") {
 				canJumpPlatform = true;
 				velocity = 0.00f;
-				transform.position = new Vector3 (col.transform.position.x - col.GetComponent<BoxCollider2D>().size.x/2 - GetComponent<BoxCollider2D>().size.x/2, transform.position.y, 0);
+				//transform.position = new Vector3 (col.transform.position.x - col.GetComponent<BoxCollider2D>().size.x/2 - GetComponent<BoxCollider2D>().size.x/2, transform.position.y, 0);
 			} 
 			if (col.tag == "StopRight") {
 				GetComponent<Rigidbody2D>().velocity = Vector2.zero;

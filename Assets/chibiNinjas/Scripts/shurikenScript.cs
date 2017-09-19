@@ -16,8 +16,6 @@ public class shurikenScript : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		Vector3 pos = transform.position;
-
-		transform.RotateAround (pos, Vector3.forward, Time.deltaTime*1000);
 		transform.position = new Vector3(pos.x + direction.x * velocity, pos.y+direction.y * velocity);
 
 		float dist = (transform.position - player.transform.position).magnitude;
