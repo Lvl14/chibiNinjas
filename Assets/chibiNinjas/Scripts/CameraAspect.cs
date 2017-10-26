@@ -5,21 +5,27 @@ public class CameraAspect : MonoBehaviour
 {
 	public GameObject player;
 
+	private float x_difference = 9.0f;
+	private float y_difference = 1.0f;
+	private float z_difference = -12.5f;
+
 	void Start () {
 		Camera.main.aspect = 16/10f;
 		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 		Time.timeScale = 1;
-	}
-
-	public void Update() {
 		cameraFunc ();
 	}
 
-	public void FixedUpdate() {
-		cameraFunc ();
-	}
+	//public void Update() {
+	//	cameraFunc ();
+	//}
+
+	//public void FixedUpdate() {
+	//	cameraFunc ();
+	//}
 
 	private void cameraFunc(){
+		transform.position = new Vector3(player.transform.position.x + x_difference,player.transform.position.y + y_difference,player.transform.position.z + z_difference);
 		Vector3 position = transform.position;
 		if (transform.position.x >= GameObject.FindObjectOfType<GameManager> ().MaxCameraX[SceneManager.GetActiveScene().buildIndex]) {
 			position.x = GameObject.FindObjectOfType<GameManager> ().MaxCameraX[SceneManager.GetActiveScene().buildIndex];
@@ -38,8 +44,5 @@ public class CameraAspect : MonoBehaviour
 
 	void LateUpdate() {
 		cameraFunc ();
-		if (Input.GetKeyDown(KeyCode.Escape)) {
-			Application.Quit();
-		}
 	}
 }
