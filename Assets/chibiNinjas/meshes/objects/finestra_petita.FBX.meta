@@ -8,15 +8,22 @@ ModelImporter:
     100000: //RootNode
     100002: LP_finestra_curta
     100004: LP_vidres_finestra_curta
+    100006: LP_vidres_finestres
     400000: //RootNode
     400002: LP_finestra_curta
     400004: LP_vidres_finestra_curta
+    400006: LP_vidres_finestres
     2300000: LP_finestra_curta
     2300002: LP_vidres_finestra_curta
+    2300004: LP_vidres_finestres
+    2300006: //RootNode
     3300000: LP_finestra_curta
     3300002: LP_vidres_finestra_curta
+    3300004: LP_vidres_finestres
+    3300006: //RootNode
     4300000: LP_finestra_curta
     4300002: LP_vidres_finestra_curta
+    4300004: LP_vidres_finestres
     9500000: //RootNode
   materials:
     importMaterials: 1
