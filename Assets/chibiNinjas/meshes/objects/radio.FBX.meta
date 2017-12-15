@@ -8,15 +8,22 @@ ModelImporter:
     100000: //RootNode
     100002: radio_antena_LP
     100004: radio_LP
+    100006: radio_reixa
     400000: //RootNode
     400002: radio_antena_LP
     400004: radio_LP
+    400006: radio_reixa
     2300000: radio_antena_LP
     2300002: radio_LP
+    2300004: radio_reixa
+    2300006: //RootNode
     3300000: radio_antena_LP
     3300002: radio_LP
+    3300004: radio_reixa
+    3300006: //RootNode
     4300000: radio_LP
     4300002: radio_antena_LP
+    4300004: radio_reixa
     9500000: //RootNode
   materials:
     importMaterials: 1

@@ -9,19 +9,24 @@ ModelImporter:
     100002: //RootNode
     100004: finestra_vidres_LP
     100006: LP_marc_finestra_esquerra
+    100008: LP_vidres_finestres
     400000: barra_cortina_LP
     400002: //RootNode
     400004: finestra_vidres_LP
     400006: LP_marc_finestra_esquerra
+    400008: LP_vidres_finestres
     2300000: barra_cortina_LP
     2300002: finestra_vidres_LP
     2300004: LP_marc_finestra_esquerra
+    2300006: LP_vidres_finestres
     3300000: barra_cortina_LP
     3300002: finestra_vidres_LP
     3300004: LP_marc_finestra_esquerra
+    3300006: LP_vidres_finestres
     4300000: LP_marc_finestra_esquerra
     4300002: barra_cortina_LP
     4300004: finestra_vidres_LP
+    4300006: LP_vidres_finestres
     9500000: //RootNode
   materials:
     importMaterials: 1
