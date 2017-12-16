@@ -9,7 +9,8 @@ public class EnemyNinjaScript : MonoBehaviour {
 
 	private bool dead;
 	private float liveCooldown = -1.0f;
-	private float shootKunaiCooldown = 5.0f;
+	private float shootKunaiTime = 7.0f;
+	private float shootKunaiTimeCooldown = 5.0f;
 
 	// Use this for initialization
 	void Start () {
@@ -24,10 +25,10 @@ public class EnemyNinjaScript : MonoBehaviour {
 		if (liveCooldown >= 0.0f) {
 			liveCooldown -= Time.deltaTime;
 		}
-		if (shootKunaiCooldown >= 0.0f) {
-			shootKunaiCooldown -= Time.deltaTime;
+		if (shootKunaiTime >= 0.0f) {
+			shootKunaiTime -= Time.deltaTime;
 		} else {
-			shootKunaiCooldown = 3.0f;
+			shootKunaiTime = shootKunaiTimeCooldown;
 			GameObject newKunai = Instantiate(kunai, new Vector3(transform.position.x, transform.position.y) , Quaternion.identity);
 			kunaiScript script = newKunai.GetComponent<kunaiScript> ();
 			if (script != null) {
