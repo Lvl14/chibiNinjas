@@ -1,0 +1,163 @@
+fileFormatVersion: 2
+guid: 4e7a2329e831cad46aecb733a9ea89c3
+timeCreated: 1581526067
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: g_blocking_retopo_auto
+    100002: //RootNode
+    100004: g_rig
+    100006: g_rig_Head
+    100008: g_rig_L Calf
+    100010: g_rig_L Clavicle
+    100012: g_rig_L Finger0
+    100014: g_rig_L Finger01
+    100016: g_rig_L Finger1
+    100018: g_rig_L Finger11
+    100020: g_rig_L Finger2
+    100022: g_rig_L Finger21
+    100024: g_rig_L Foot
+    100026: g_rig_L Forearm
+    100028: g_rig_L Hand
+    100030: g_rig_L Thigh
+    100032: g_rig_L Toe0
+    100034: g_rig_L UpperArm
+    100036: g_rig_Neck
+    100038: g_rig_Pelvis
+    100040: g_rig_Ponytail1
+    100042: g_rig_Ponytail2
+    100044: g_rig_R Calf
+    100046: g_rig_R Clavicle
+    100048: g_rig_R Finger0
+    100050: g_rig_R Finger01
+    100052: g_rig_R Finger1
+    100054: g_rig_R Finger11
+    100056: g_rig_R Finger2
+    100058: g_rig_R Finger21
+    100060: g_rig_R Foot
+    100062: g_rig_R Forearm
+    100064: g_rig_R Hand
+    100066: g_rig_R Thigh
+    100068: g_rig_R Toe0
+    100070: g_rig_R UpperArm
+    100072: g_rig_Spine
+    100074: g_rig_Spine1
+    100076: g_rig_Tail
+    100078: g_rig_Tail1
+    100080: g_rig_Tail2
+    100082: g_rig_Tail3
+    400000: g_blocking_retopo_auto
+    400002: //RootNode
+    400004: g_rig
+    400006: g_rig_Head
+    400008: g_rig_L Calf
+    400010: g_rig_L Clavicle
+    400012: g_rig_L Finger0
+    400014: g_rig_L Finger01
+    400016: g_rig_L Finger1
+    400018: g_rig_L Finger11
+    400020: g_rig_L Finger2
+    400022: g_rig_L Finger21
+    400024: g_rig_L Foot
+    400026: g_rig_L Forearm
+    400028: g_rig_L Hand
+    400030: g_rig_L Thigh
+    400032: g_rig_L Toe0
+    400034: g_rig_L UpperArm
+    400036: g_rig_Neck
+    400038: g_rig_Pelvis
+    400040: g_rig_Ponytail1
+    400042: g_rig_Ponytail2
+    400044: g_rig_R Calf
+    400046: g_rig_R Clavicle
+    400048: g_rig_R Finger0
+    400050: g_rig_R Finger01
+    400052: g_rig_R Finger1
+    400054: g_rig_R Finger11
+    400056: g_rig_R Finger2
+    400058: g_rig_R Finger21
+    400060: g_rig_R Foot
+    400062: g_rig_R Forearm
+    400064: g_rig_R Hand
+    400066: g_rig_R Thigh
+    400068: g_rig_R Toe0
+    400070: g_rig_R UpperArm
+    400072: g_rig_Spine
+    400074: g_rig_Spine1
+    400076: g_rig_Tail
+    400078: g_rig_Tail1
+    400080: g_rig_Tail2
+    400082: g_rig_Tail3
+    4300000: g_blocking_retopo_auto
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: g_blocking_retopo_auto
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

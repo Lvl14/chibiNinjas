@@ -1,0 +1,63 @@
+placeholder animation frames:
+gat   (g_rig):
+
+	-idle pose = 0
+
+	-idle waiting = 0 to 44
+
+	-idle to running = 44 to 50
+
+	-running cycle = 50 to 85
+
+	-running to idle = 85 to 90
+
+	-idle to jumping position = 90 to 95
+
+	-jumping cycle = 95 to 115
+		(- going up only = 95 to 102
+		 - going down o. = 103 to 115)
+	
+	-jumping to idle pose = 115 to 120
+
+	-throwing object / attack cycle = 120 to 180
+
+
+rata  (r_rig):
+
+	-idle standing pose = 0
+
+	-idle squating pose = 140
+
+	-idle squating to idle standing = 141 to 146
+
+	-idle standing to idle squating = 135 to 150
+
+	-idle to L hand attack to idle = 0 to 22
+
+	-idle to R hand attack to idle = 22 to 44
+
+	-idle to hand attack x2 (L+R) to idle = 51 to 86
+
+	-walking cyle = 95 to 130
+	
+
+ocell  (o-rig):
+
+	-no movement, resting pose = 0
+
+	-resting to flying = 0 to 5
+
+        -flying cycle = 5 to 20
+
+	-flying to resting pose = 20 to 30
+
+	-attack pose = 42
+
+	-flying to attack pose = 36 to 42
+
+	-attack pose to flying = 45 to 54
+
+	-attack pose to resting pose = 58 to 78
+
+
+

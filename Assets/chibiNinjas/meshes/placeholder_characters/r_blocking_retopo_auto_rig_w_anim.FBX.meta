@@ -1,0 +1,193 @@
+fileFormatVersion: 2
+guid: 803ceb12b7a8c2342bf1ae5777b8eb00
+timeCreated: 1581528009
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Bip001 L Finger22
+    100002: r_blocking_retopo_auto
+    100004: //RootNode
+    100006: r_rig
+    100008: r_rig_Head
+    100010: r_rig_L Calf
+    100012: r_rig_L Clavicle
+    100014: r_rig_L Finger0
+    100016: r_rig_L Finger01
+    100018: r_rig_L Finger02
+    100020: r_rig_L Finger1
+    100022: r_rig_L Finger11
+    100024: r_rig_L Finger12
+    100026: r_rig_L Finger2
+    100028: r_rig_L Finger21
+    100030: r_rig_L Finger3
+    100032: r_rig_L Finger31
+    100034: r_rig_L Finger32
+    100036: r_rig_L Foot
+    100038: r_rig_L Forearm
+    100040: r_rig_L Hand
+    100042: r_rig_L Thigh
+    100044: r_rig_L Toe0
+    100046: r_rig_L UpperArm
+    100048: r_rig_Neck
+    100050: r_rig_Pelvis
+    100052: r_rig_Ponytail1
+    100054: r_rig_Ponytail2
+    100056: r_rig_R Calf
+    100058: r_rig_R Clavicle
+    100060: r_rig_R Finger0
+    100062: r_rig_R Finger01
+    100064: r_rig_R Finger02
+    100066: r_rig_R Finger1
+    100068: r_rig_R Finger11
+    100070: r_rig_R Finger12
+    100072: r_rig_R Finger2
+    100074: r_rig_R Finger21
+    100076: r_rig_R Finger22
+    100078: r_rig_R Finger3
+    100080: r_rig_R Finger31
+    100082: r_rig_R Finger32
+    100084: r_rig_R Foot
+    100086: r_rig_R Forearm
+    100088: r_rig_R Hand
+    100090: r_rig_R Thigh
+    100092: r_rig_R Toe0
+    100094: r_rig_R UpperArm
+    100096: r_rig_Spine
+    100098: r_rig_Spine1
+    100100: r_rig_Spine2
+    100102: r_rig_Tail
+    100104: r_rig_Tail1
+    100106: r_rig_Tail2
+    100108: r_rig_Tail3
+    100110: r_rig_Tail4
+    100112: r_rig_Tail5
+    400000: Bip001 L Finger22
+    400002: r_blocking_retopo_auto
+    400004: //RootNode
+    400006: r_rig
+    400008: r_rig_Head
+    400010: r_rig_L Calf
+    400012: r_rig_L Clavicle
+    400014: r_rig_L Finger0
+    400016: r_rig_L Finger01
+    400018: r_rig_L Finger02
+    400020: r_rig_L Finger1
+    400022: r_rig_L Finger11
+    400024: r_rig_L Finger12
+    400026: r_rig_L Finger2
+    400028: r_rig_L Finger21
+    400030: r_rig_L Finger3
+    400032: r_rig_L Finger31
+    400034: r_rig_L Finger32
+    400036: r_rig_L Foot
+    400038: r_rig_L Forearm
+    400040: r_rig_L Hand
+    400042: r_rig_L Thigh
+    400044: r_rig_L Toe0
+    400046: r_rig_L UpperArm
+    400048: r_rig_Neck
+    400050: r_rig_Pelvis
+    400052: r_rig_Ponytail1
+    400054: r_rig_Ponytail2
+    400056: r_rig_R Calf
+    400058: r_rig_R Clavicle
+    400060: r_rig_R Finger0
+    400062: r_rig_R Finger01
+    400064: r_rig_R Finger02
+    400066: r_rig_R Finger1
+    400068: r_rig_R Finger11
+    400070: r_rig_R Finger12
+    400072: r_rig_R Finger2
+    400074: r_rig_R Finger21
+    400076: r_rig_R Finger22
+    400078: r_rig_R Finger3
+    400080: r_rig_R Finger31
+    400082: r_rig_R Finger32
+    400084: r_rig_R Foot
+    400086: r_rig_R Forearm
+    400088: r_rig_R Hand
+    400090: r_rig_R Thigh
+    400092: r_rig_R Toe0
+    400094: r_rig_R UpperArm
+    400096: r_rig_Spine
+    400098: r_rig_Spine1
+    400100: r_rig_Spine2
+    400102: r_rig_Tail
+    400104: r_rig_Tail1
+    400106: r_rig_Tail2
+    400108: r_rig_Tail3
+    400110: r_rig_Tail4
+    400112: r_rig_Tail5
+    4300000: r_blocking_retopo_auto
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: r_blocking_retopo_auto
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
